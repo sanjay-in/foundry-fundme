@@ -52,6 +52,22 @@ contract FundMe {
         require(callSuccess, "Call failed");
     }
 
+    function getOwner() public view returns (address) {
+        return i_owner;
+    }
+
+    function getUserAddresses() public view returns (address[] memory) {
+        return funders;
+    }
+
+    function getUserFundedAmount(address funder) public view returns (uint256) {
+        return addressToAmountFunded[funder];
+    }
+
+    function getPriceFeed() public view returns (AggregatorV3Interface) {
+        return s_priceFeed;
+    }
+
     fallback() external payable {
         fund();
     }
